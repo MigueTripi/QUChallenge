@@ -68,7 +68,7 @@ namespace WordMatching_TEST
             var words = new string[]
             {
                 "COLD",
-                "WILD",
+                "WIND",
                 "SNOW",
                 "CHILL"
             };
@@ -76,9 +76,43 @@ namespace WordMatching_TEST
             var findRecursive = new WordFinder(matrix);
             var result = findRecursive.Find(words);
 
-            Assert.That(result, Is.EqualTo(new List<string>() { "COLD", "WILD", "CHILL" }));
+            Assert.That(result, Is.EqualTo(new List<string>() { "CHILL", "COLD", "WIND" }));
         }
 
+        [TestMethod]
+        public void TestFindElevenWords_ReturnTen()
+        {
+            var matrix = new string[]
+            {
+                "BIRDCRY",
+                "IGWIOUT",
+                "RHILLOL",
+                "DONSDUE",
+                "BIDXYOU"
+            };
 
+            //YOU whould be expluded due to alphabetic order
+            var words = new string[]
+            {
+                "COLD",
+                "SNOW",
+                "BIRD",
+                "CRY",
+                "IO",
+                "OUT",
+                "LOL",
+                "DON",
+                "DUE",
+                "YOU",
+                "BID",
+                "ILL"
+            };
+
+            var findRecursive = new WordFinder(matrix);
+            var result = findRecursive.Find(words);
+            
+            Assert.That(result, Is.EqualTo(
+                new List<string>() { "BIRD", "BID", "COLD", "CRY", "DON", "DUE", "ILL", "IO", "LOL", "OUT" }));
+        }
     }
 }
