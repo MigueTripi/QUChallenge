@@ -31,6 +31,7 @@ namespace WordMatching_TEST
 
             Assert.That(result, Is.EqualTo(new List<string>() { "ARE", "PUT" }));
         }
+        
         [TestMethod]
         public void TestFindTwoHorizontalWordsAtTheEnd_OnePerRow()
         {
@@ -51,6 +52,33 @@ namespace WordMatching_TEST
 
             Assert.That(result, Is.EqualTo(new List<string>() { "END", "NET" }));
         }
+
+        [TestMethod]
+        public void TestProvidedExample()
+        {
+            var matrix = new string[]
+            {
+                "ABCDC",
+                "FGWIO",
+                "CHILL",
+                "PQNSD",
+                "UVDXY"
+            };
+
+            var words = new string[]
+            {
+                "COLD",
+                "WILD",
+                "SNOW",
+                "CHILL"
+            };
+
+            var findRecursive = new WordFinder(matrix);
+            var result = findRecursive.Find(words);
+
+            Assert.That(result, Is.EqualTo(new List<string>() { "COLD", "WILD", "CHILL" }));
+        }
+
 
     }
 }
