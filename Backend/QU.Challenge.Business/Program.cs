@@ -24,7 +24,7 @@ namespace QU.Challenge.Business
                 "BOAT",
             };
             //new FindRecursive().Execute(null, null);
-            new FindRecursive().Execute(matrix, words);
+            new WordFinder(matrix).Find(words);
 
         }
     }

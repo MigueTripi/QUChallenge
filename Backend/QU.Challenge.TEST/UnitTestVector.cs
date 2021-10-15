@@ -3,11 +3,12 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using QU.Challenge.Business;
 using Assert = NUnit.Framework.Assert;
+using Xunit.Sdk;
 
 namespace WordMatching_TEST
 {
     [TestClass]
-    public class UnitTest
+    public class UnitTestVector
     {
         [TestMethod]
         public void TestFindTwoWords()
@@ -24,8 +25,8 @@ namespace WordMatching_TEST
                 "REC"
             };
 
-            var findRecursive = new FindRecursive();
-            var result = findRecursive.Execute(matrix, words);
+            var findRecursive = new WordFinder(matrix);
+            var result = findRecursive.Find(words);
 
             Assert.That(result, Is.EqualTo(new List<string>() { "ARE", "ARES" }));
         }
@@ -42,8 +43,8 @@ namespace WordMatching_TEST
                 "REST",
             };
 
-            var findRecursive = new FindRecursive();
-            var result = findRecursive.Execute(matrix, words);
+            var findRecursive = new WordFinder(matrix);
+            var result = findRecursive.Find(words);
 
             Assert.That(result, Is.EqualTo(new List<string>() { "REST" }));
         }
@@ -61,8 +62,8 @@ namespace WordMatching_TEST
                 "BOAT",
             };
 
-            var findRecursive = new FindRecursive();
-            var result = findRecursive.Execute(matrix, words);
+            var findRecursive = new WordFinder(matrix);
+            var result = findRecursive.Find(words);
 
             Assert.That(result, Is.EqualTo(new List<string>() { "BOAT" }));
         }
@@ -80,8 +81,8 @@ namespace WordMatching_TEST
                 "BOAT",
             };
 
-            var findRecursive = new FindRecursive();
-            var result = findRecursive.Execute(matrix, words);
+            var findRecursive = new WordFinder(matrix);
+            var result = findRecursive.Find(words);
 
             Assert.That(result, Is.EqualTo(new List<string>() { }));
         }

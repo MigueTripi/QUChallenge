@@ -16,9 +16,10 @@ namespace QU.Challenge.API.Controllers
         [Route("find_words")]
         public FindWordResponse FindWords(FindWordRequest request)
         {
+            //TODO: Validate request
             //TODO: inject business instead of create it.
-            var business = new FindRecursive();
-            business.Execute(request.Matrix, request.Words);
+            var business = new WordFinder(request.Matrix);
+            business.Find(request.Words);
             return new FindWordResponse();
         }
 

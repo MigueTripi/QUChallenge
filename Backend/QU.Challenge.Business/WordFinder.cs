@@ -5,38 +5,34 @@ using System.Linq;
 
 namespace QU.Challenge.Business
 {
-    public class FindRecursive
+    public class WordFinder
     {
 
         private List<string> Result = new List<string>();
-        public List<string> Execute(string[] matrix, string[] words)
+        private string[] Matrix;
+        public List<string> Find(string[] words)
         {
-            //var matrix = new List<string>()
-            //{
-            //    "AABECOMEFJ"
-            //};
-
-            //var words = new List<string>()
-            //{
-            //    "BE",
-            //    "COME"
-            //};
-            FindWords(matrix, words);
+            FindWords(words);
             Result.ForEach(r => Console.WriteLine("FOUND: " + r));
             return Result;
         }
 
-        private void FindWords(string[] matrix, string[] words)
+        public WordFinder(IEnumerable<string> matrix)
         {
-            for (int x = 0; x < matrix.Count(); x++)
+            Matrix = matrix.ToArray();
+        }
+
+        private void FindWords(IEnumerable<string> words)
+        {
+            for (int x = 0; x < Matrix.Count(); x++)
             { 
-                for (int y = 0; y < matrix[x].Length; y++)
+                for (int y = 0; y < Matrix[x].Length; y++)
                 {
-                    var currentCharacter = matrix[x][y];
+                    var currentCharacter = Matrix[x][y];
                     var wordsMatchingFirstCharacter = words.Where(w => w[0] == currentCharacter).Distinct().ToList();
                     if (wordsMatchingFirstCharacter.Any())
                     {
-                        RecursiveSearch(matrix[x], wordsMatchingFirstCharacter, y+1, 1, currentCharacter.ToString());
+                        RecursiveSearch(Matrix[x], wordsMatchingFirstCharacter, y+1, 1, currentCharacter.ToString());
                     }
                 }
             }
