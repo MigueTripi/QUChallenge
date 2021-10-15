@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\QU.Challenge.API\QU.Challenge.API.csproj" />
     <ProjectReference Include="..\QU.Challenge.Business\QU.Challenge.Business.csproj" />
   </ItemGroup>
 

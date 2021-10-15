@@ -15,18 +15,17 @@ namespace QU.Challenge.API.Controllers
     {
         [HttpPost]
         [Route("find_words")]
-        public FindWordResponse FindWords(FindWordRequest request)
+        public async Task<IActionResult> FindWords(FindWordRequest request)
         {
 
             var validatorResult = WordFinderValidator.ValidateRequest(request);
             if (!validatorResult.IsOk)
             {
-                
+                return StatusCode(validatorResult.Code, validatorResult.Description);
             }
-            
+
             var business = new WordFinder(request.Matrix);
-            business.Find(request.Words);
-            return new FindWordResponse();
+            return Ok(business.Find(request.Words));
         }
 
     }

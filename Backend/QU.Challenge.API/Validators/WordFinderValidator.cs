@@ -13,8 +13,8 @@ namespace QU.Challenge.API.Validators
                 return new WordFinderRequestValidatorResult()
                 {
                     IsOk = false,
-                    Code = 1,
-                    Description = "Request has null values"
+                    Code = 400,
+                    Description = $"Request has null values"
                 };
             }
 
@@ -24,26 +24,38 @@ namespace QU.Challenge.API.Validators
                 return new WordFinderRequestValidatorResult()
                 {
                     IsOk = false,
-                    Code = 2,
+                    Code = 400,
                     Description = $"Matrix has more rows than allowed. Current lenght: {matrixLenght}"
                 };
             }
 
             var quantityColumns = request.Matrix[0].Length;
-            if (!request.Matrix.Any(x=> x.Length != quantityColumns)
+            if (request.Matrix.Any(x=> x.Length != quantityColumns))
             {
                 return new WordFinderRequestValidatorResult()
                 {
                     IsOk = false,
-                    Code = 3,
+                    Code = 400,
                     Description = $"Matrix has items with different quantity of columns"
+                };
+            }
+
+            //64 could be configurated
+            var maxColumnLength = 64;
+            if (request.Matrix.Any(x => x.Length > maxColumnLength))
+            {
+                return new WordFinderRequestValidatorResult()
+                {
+                    IsOk = false,
+                    Code = 400,
+                    Description = $"Matrix has some item with more than {maxColumnLength} columns"
                 };
             }
 
             return new WordFinderRequestValidatorResult()
             {
                 IsOk = true,
-                Code = 0,
+                Code = 200,
                 Description = $"OK"
             };
         }
