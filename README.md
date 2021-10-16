@@ -3,10 +3,10 @@
 Platform:
 .NET Core 3.1
 
-General considerations:
+# General considerations:
 I'm providing two possible solutions, original one implemented in main branch and an improved solution in Approach2 branch.
 
-Technical decisions
+# Technical decisions:
 I respect the contracts provided in the challenge.
 Because I am receiving a matrix in the contructor I discharged the option of implement inversion of control.
 
