@@ -1,0 +1,39 @@
+{
+	"info": {
+		"_postman_id": "ab2dcdce-58a4-4c3f-9c80-a6fafc841d0e",
+		"name": "QU",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Find_words",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Matrix\": [\r\n        \"CALLALL\",\r\n        \"TRYITPL\",\r\n        \"TRYITPL\",\r\n        \"ALLTRYW\",\r\n        \"SEVERAL\"\r\n        ],\r\n    \"Words\": [\"ALL\", \"TRY\", \"WHEN\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:12145/api/WordFinder/find_words",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "12145",
+					"path": [
+						"api",
+						"WordFinder",
+						"find_words"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
